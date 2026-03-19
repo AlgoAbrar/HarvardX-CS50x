@@ -1,0 +1,19 @@
+The average values allow us to describe their audio aura. 0.65906 is the average energy.
+The average danceability is 0.71646 and the average valence is 0.484443. This suggests that the
+The most popular songs among listeners typically have a moderate level of energy, a less positive valence, and are
+able to dance.
+
+Nevertheless, this computation has limitations that could compromise its representativeness of the
+the true preferences of the listener. First of all, it only takes into account 100 songs from a single
+year, failing to take into consideration the listener's entire musical background or shifting tastes over time.
+Furthermore, the computation ignores the variety of genres and personal song preferences.
+among the listener's favourite songs. Additionally, it disregards the emotional significance or connection.
+the listener might have with particular songs.
+
+Other methods can be taken into consideration in order to improve the audio aura calculation. Weighting
+Songs with higher play counts or individual ratings can be given more weight by using averages. When
+In order to capture the listener's current mood, weighting can also be used, taking into account the songs' recentness.
+mood and inclinations. incorporating user feedback, like rating songs according to their emotional impact or
+The audio aura calculation can be further customised by classifying songs into mood categories.
+Examining the listener's favourite songs in each genre independently can also yield a more thorough
+a reflection of their taste in music.
