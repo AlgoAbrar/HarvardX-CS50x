@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Bangladesh Trivia!</title>
+        <script>
+            // TODO: Add code to check answers to questions
+            document.addEventListener('DOMContentLoaded', function() {
+
+                let correctButtons = document.querySelectorAll('.correct');
+                let incorrectButtons = document.querySelectorAll('.incorrect');
+                
+                correctButtons.forEach(function(button) {
+                    button.addEventListener('click', function(event) {
+                        if (!this.classList.contains('answered')) {
+                            this.style.backgroundColor = 'green';
+                            this.style.color = 'white';
+                            this.classList.add('answered');
+                            
+                            const questionDiv = this.closest('.question-item');
+                            const feedbackId = questionDiv.getAttribute('data-feedback');
+                            const feedbackDiv = document.getElementById(feedbackId);
+                            feedbackDiv.innerHTML = 'Correct!';
+                            feedbackDiv.style.color = 'green';
+                            
+                            updateScore('mcq');
+                        }
+                    });
+                });
+                
+                incorrectButtons.forEach(function(button) {
+                    button.addEventListener('click', function(event) {
+                        if (!this.classList.contains('answered')) {
+                            this.style.backgroundColor = 'red';
+                            this.style.color = 'white';
+                            this.classList.add('answered');
+                            
+                            const questionDiv = this.closest('.question-item');
+                            const feedbackId = questionDiv.getAttribute('data-feedback');
+                            const feedbackDiv = document.getElementById(feedbackId);
+                            feedbackDiv.innerHTML = 'Incorrect';
+                            feedbackDiv.style.color = 'red';
+                        }
+                    });
+                });
+                
+                let checkButtons = document.querySelectorAll('.check-btn');
+                
+                checkButtons.forEach(function(button) {
+                    button.addEventListener('click', function() {
+                        const questionDiv = this.closest('.question-item');
+                        const inputId = questionDiv.getAttribute('data-input');
+                        const feedbackId = questionDiv.getAttribute('data-feedback');
+                        const correctAnswer = questionDiv.getAttribute('data-answer').toLowerCase();
+                        
+                        let input = document.getElementById(inputId);
+                        let feedback = document.getElementById(feedbackId);
+                        
+                        if (input.value.trim().toLowerCase() === correctAnswer) {
+                            input.style.backgroundColor = 'green';
+                            input.style.color = 'white';
+                            feedback.innerHTML = 'Correct!';
+                            feedback.style.color = 'green';
+                            
+                            if (!input.classList.contains('answered')) {
+                                updateScore('fr');
+                                input.classList.add('answered');
+                            }
+                        } else {
+                            input.style.backgroundColor = 'red';
+                            input.style.color = 'white';
+                            feedback.innerHTML = 'Incorrect. Correct answer: ' + questionDiv.getAttribute('data-answer-display');
+                            feedback.style.color = 'red';
+                        }
+                    });
+                });
+
+                let inputs = document.querySelectorAll('input[type="text"]');
+                inputs.forEach(function(input) {
+                    input.addEventListener('keypress', function(event) {
+                        if (event.key === 'Enter') {
+                            const questionDiv = this.closest('.question-item');
+                            const checkButton = questionDiv.querySelector('.check-btn');
+                            checkButton.click();
+                        }
+                    });
+                });
+                
+                let mcqScore = 0;
+                let frScore = 0;
+                
+                function updateScore(type) {
+                    if (type === 'mcq') {
+                        mcqScore++;
+                        document.getElementById('mcq-score').textContent = mcqScore;
+                    } else if (type === 'fr') {
+                        frScore++;
+                        document.getElementById('fr-score').textContent = frScore;
+                    }
+                }
+            });
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Bangladesh Trivia!</h1>
+            <p>Test your knowledge about Bangladesh - its history, culture, and achievements</p>
+        </div>
+
+        <div class="container">
+            <!-- Part 1: Multiple Choice Questions -->
+             
+            <div class="section">
+                <h2>Part 1: Multiple Choice Questions (Score: <span id="mcq-score">0</span>/10)</h2>
+                <hr>
+                <!-- TODO: Add multiple choice question here -->
+                <!-- Question 1 -->
+                <div class="question-item" data-feedback="feedback1">
+                    <h3>1. In which year did Bangladesh gain independence?</h3>
+                    <button class="incorrect">1947</button>
+                    <button class="correct">1971</button>
+                    <button class="incorrect">1952</button>
+                    <button class="incorrect">1980</button>
+                    <p id="feedback1"></p>
+                </div>
+                <hr>
+                
+                <!-- Question 2 -->
+                <div class="question-item" data-feedback="feedback2">
+                    <h3>2. Who is known as the "Father of the Nation" in Bangladesh?</h3>
+                    <button class="correct">Ziaur Rahman</button>
+                    <button class="incorrect">Hussain Muhammad Ershad</button>
+                    <button class="incorrect">Sheikh Mujibur Rahman</button>
+                    <button class="incorrect">Khaleda Zia</button>
+                    <p id="feedback2"></p>
+                </div>
+                <hr>
+                
+                <!-- Question 3 -->
+                <div class="question-item" data-feedback="feedback3">
+                    <h3>3. What is the national flower of Bangladesh?</h3>
+                    <button class="incorrect">Rose</button>
+                    <button class="incorrect">Lotus</button>
+                    <button class="correct">Water Lily (Shapla)</button>
+                    <button class="incorrect">Marigold</button>
+                    <p id="feedback3"></p>
+                </div>
+                <hr>
+                
+                <!-- Question 4 -->
+                <div class="question-item" data-feedback="feedback4">
+                    <h3>4. Which is the longest river in Bangladesh?</h3>
+                    <button class="incorrect">Jamuna</button>
+                    <button class="correct">Padma</button>
+                    <button class="incorrect">Meghna</button>
+                    <button class="incorrect">Brahmaputra</button>
+                    <p id="feedback4"></p>
+                </div>
+                <hr>
+                
+                <!-- Question 5 -->
+                <div class="question-item" data-feedback="feedback5">
+                    <h3>5. What is the capital city of Bangladesh?</h3>
+                    <button class="incorrect">Chittagong</button>
+                    <button class="correct">Dhaka</button>
+                    <button class="incorrect">Khulna</button>
+                    <button class="incorrect">Rajshahi</button>
+                    <p id="feedback5"></p>
+                </div>
+                <hr>
+                
+                <!-- Question 6 -->
+                <div class="question-item" data-feedback="feedback6">
+                    <h3>6. Which day is celebrated as International Mother Language Day worldwide?</h3>
+                    <button class="correct">21st February</button>
+                    <button class="incorrect">26th March</button>
+                    <button class="incorrect">16th December</button>
+                    <button class="incorrect">14th April</button>
+                    <p id="feedback6"></p>
+                </div>
+                <hr>
+                
+                <!-- Question 7 -->
+                <div class="question-item" data-feedback="feedback7">
+                    <h3>7. What is the currency of Bangladesh?</h3>
+                    <button class="incorrect">Rupee</button>
+                    <button class="correct">Taka</button>
+                    <button class="incorrect">Dollar</button>
+                    <button class="incorrect">Pound</button>
+                    <p id="feedback7"></p>
+                </div>
+                <hr>
+                
+                <!-- Question 8 -->
+                <div class="question-item" data-feedback="feedback8">
+                    <h3>8. Which major river flows through the Sundarbans?</h3>
+                    <button class="incorrect">Padma</button>
+                    <button class="incorrect">Jamuna</button>
+                    <button class="correct">Ganges (as Hooghly)</button>
+                    <button class="incorrect">Teesta</button>
+                    <p id="feedback8"></p>
+                </div>
+                <hr>
+                
+                <!-- Question 9 -->
+                <div class="question-item" data-feedback="feedback9">
+                    <h3>9. What is the national animal of Bangladesh?</h3>
+                    <button class="incorrect">Elephant</button>
+                    <button class="incorrect">Peacock</button>
+                    <button class="correct">Royal Bengal Tiger</button>
+                    <button class="incorrect">Deer</button>
+                    <p id="feedback9"></p>
+                </div>
+                <hr>
+                
+                <!-- Question 10 -->
+                <div class="question-item" data-feedback="feedback10">
+                    <h3>10. Which international organization awarded Bangladesh the "South-South Award" for its development success?</h3>
+                    <button class="incorrect">World Bank</button>
+                    <button class="correct">United Nations</button>
+                    <button class="incorrect">IMF</button>
+                    <button class="incorrect">WHO</button>
+                    <p id="feedback10"></p>
+                </div>
+            </div>
+
+            <!-- Part 2: Free Response Questions -->
+            <div class="section">
+                <h2>Part 2: Free Response Questions (Score: <span id="fr-score">0</span>/10)</h2>
+                <hr>
+                <!-- TODO: Add free response question here -->
+                <!-- Question 1 -->
+                <div class="question-item" data-input="answer1" data-feedback="feedback11" data-answer="dhaka" data-answer-display="Dhaka">
+                    <h3>1. What is the capital city of Bangladesh?</h3>
+                    <input type="text" id="answer1">
+                    <button class="check-btn">Check Answer</button>
+                    <p id="feedback11"></p>
+                </div>
+                <hr>
+                
+                <!-- Question 2 -->
+                <div class="question-item" data-input="answer2" data-feedback="feedback12" data-answer="1971" data-answer-display="1971">
+                    <h3>2. In which year did Bangladesh achieve independence?</h3>
+                    <input type="text" id="answer2">
+                    <button class="check-btn">Check Answer</button>
+                    <p id="feedback12"></p>
+                </div>
+                <hr>
+                
+                <!-- Question 3 -->
+                <div class="question-item" data-input="answer3" data-feedback="feedback13" data-answer="bengali" data-answer-display="Bengali">
+                    <h3>3. What is the official language of Bangladesh?</h3>
+                    <input type="text" id="answer3">
+                    <button class="check-btn">Check Answer</button>
+                    <p id="feedback13"></p>
+                </div>
+                <hr>
+                
+                <!-- Question 4 -->
+                <div class="question-item" data-input="answer4" data-feedback="feedback14" data-answer="taka" data-answer-display="Taka">
+                    <h3>4. What is the currency of Bangladesh?</h3>
+                    <input type="text" id="answer4">
+                    <button class="check-btn">Check Answer</button>
+                    <p id="feedback14"></p>
+                </div>
+                <hr>
+                
+                <!-- Question 5 -->
+                <div class="question-item" data-input="answer5" data-feedback="feedback15" data-answer="padma" data-answer-display="Padma">
+                    <h3>5. Which is the longest river entirely within Bangladesh?</h3>
+                    <input type="text" id="answer5">
+                    <button class="check-btn">Check Answer</button>
+                    <p id="feedback15"></p>
+                </div>
+                <hr>
+                
+                <!-- Question 6 -->
+                <div class="question-item" data-input="answer6" data-feedback="feedback16" data-answer="sundarbans" data-answer-display="Sundarbans">
+                    <h3>6. What is the name of the largest mangrove forest in the world, located in Bangladesh?</h3>
+                    <input type="text" id="answer6">
+                    <button class="check-btn">Check Answer</button>
+                    <p id="feedback16"></p>
+                </div>
+                <hr>
+                
+                <!-- Question 7 -->
+                <div class="question-item" data-input="answer7" data-feedback="feedback17" data-answer="water lily" data-answer-display="Water Lily (Shapla)">
+                    <h3>7. What is the national flower of Bangladesh?</h3>
+                    <input type="text" id="answer7">
+                    <button class="check-btn">Check Answer</button>
+                    <p id="feedback17"></p>
+                </div>
+                <hr>
+                
+                <!-- Question 8 -->
+                <div class="question-item" data-input="answer8" data-feedback="feedback18" data-answer="royal bengal tiger" data-answer-display="Royal Bengal Tiger">
+                    <h3>8. What is the national animal of Bangladesh?</h3>
+                    <input type="text" id="answer8">
+                    <button class="check-btn">Check Answer</button>
+                    <p id="feedback18"></p>
+                </div>
+                <hr>
+                
+                <!-- Question 9 -->
+                <div class="question-item" data-input="answer9" data-feedback="feedback19" data-answer="february 21" data-answer-display="February 21">
+                    <h3>9. Which date is celebrated as International Mother Language Day, originating from Bangladesh?</h3>
+                    <input type="text" id="answer9">
+                    <button class="check-btn">Check Answer</button>
+                    <p id="feedback19"></p>
+                </div>
+                <hr>
+                
+                <!-- Question 10 -->
+                <div class="question-item" data-input="answer10" data-feedback="feedback20" data-answer="cox's bazar" data-answer-display="Cox's Bazar">
+                    <h3>10. What is the name of the world's longest natural sea beach located in Bangladesh?</h3>
+                    <input type="text" id="answer10">
+                    <button class="check-btn">Check Answer</button>
+                    <p id="feedback20"></p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

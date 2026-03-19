@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="styles.css" rel="stylesheet">
+    <title>Divisions of Bangladesh</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCAzMCAzMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE1IDBDNi43MTU3MyAwIDAgNi43MTU3MyAwIDE1QzAgMjMuMjg0MyA2LjcxNTczIDMwIDE1IDMwQzIzLjI4NDMgMzAgMzAgMjMuMjg0MyAzMCAxNUMzMCA2LjcxNTczIDIzLjI4NDMgMCAxNSAwWk0yMi41IDEyLjVMOS4zNzUgMjEuMjE2OEw5LjM3NSAzLjc4MzE5TDIyLjUgMTIuNVoiIGZpbGw9IiNGRkZGRkYiLz4KPC9zdmc+"
+                    alt="Flag" width="30" height="30" class="d-inline-block align-text-top me-2">
+                Bangladesh
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="history.html">History</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="divisions.html">Divisions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tourism.html">Tourism</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="divisions-hero">
+        <div class="container text-center text-white py-5 mt-5">
+            <h1 class="display-4 fw-bold">8 Divisions of Bangladesh</h1>
+            <p class="lead">Explore the Administrative Regions</p>
+            <button id="divisionBtn" class="btn btn-lg btn-light mt-3">Learn About Divisions</button>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        <div class="row mb-5">
+            <div class="col-12">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h4 class="card-title mb-4">Select a Division to Explore</h4>
+                        <div class="row" id="divisionButtons">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-12">
+                <div id="divisionDetails" class="card shadow">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">Click on a division above to see details</h4>
+                        <p class="text-center text-muted">Information will appear here</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="divisionsGrid">
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card h-100 shadow division-card" data-division="dhaka">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Dhaka Division</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6>Capital: Dhaka</h6>
+                        <p>Largest and most populous division</p>
+                        <hr>
+                        <small>
+                            <strong>Major Cities:</strong> Dhaka, Narayanganj, Gazipur<br>
+                            <strong>Area:</strong> 20,593 km²<br>
+                            <strong>Population:</strong> 44+ million<br>
+                            <strong>Specialty:</strong> Capital region, economic hub
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card h-100 shadow division-card" data-division="chittagong">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0">Chittagong Division</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6>Capital: Chittagong</h6>
+                        <p>Major port and industrial area</p>
+                        <hr>
+                        <small>
+                            <strong>Major Cities:</strong> Chittagong, Comilla<br>
+                            <strong>Area:</strong> 33,771 km²<br>
+                            <strong>Population:</strong> 33+ million<br>
+                            <strong>Specialty:</strong> Largest seaport, hill tracts
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card h-100 shadow division-card" data-division="rajshahi">
+                    <div class="card-header bg-warning">
+                        <h5 class="mb-0">Rajshahi Division</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6>Capital: Rajshahi</h6>
+                        <p>Known for silk and mangoes</p>
+                        <hr>
+                        <small>
+                            <strong>Major Cities:</strong> Rajshahi, Bogura<br>
+                            <strong>Area:</strong> 18,153 km²<br>
+                            <strong>Population:</strong> 19+ million<br>
+                            <strong>Specialty:</strong> Silk industry, archaeological sites
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card h-100 shadow division-card" data-division="khulna">
+                    <div class="card-header bg-danger text-white">
+                        <h5 class="mb-0">Khulna Division</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6>Capital: Khulna</h6>
+                        <p>Home to Sundarbans</p>
+                        <hr>
+                        <small>
+                            <strong>Major Cities:</strong> Khulna, Jessore<br>
+                            <strong>Area:</strong> 22,285 km²<br>
+                            <strong>Population:</strong> 17+ million<br>
+                            <strong>Specialty:</strong> Sundarbans, shrimp farming
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card h-100 shadow division-card" data-division="barishal">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="mb-0">Barishal Division</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6>Capital: Barishal</h6>
+                        <p>Riverine region</p>
+                        <hr>
+                        <small>
+                            <strong>Major Cities:</strong> Barishal, Patuakhali<br>
+                            <strong>Area:</strong> 13,225 km²<br>
+                            <strong>Population:</strong> 9+ million<br>
+                            <strong>Specialty:</strong> Rice production, rivers
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card h-100 shadow division-card" data-division="sylhet">
+                    <div class="card-header bg-purple text-white">
+                        <h5 class="mb-0">Sylhet Division</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6>Capital: Sylhet</h6>
+                        <p>Tea gardens and hills</p>
+                        <hr>
+                        <small>
+                            <strong>Major Cities:</strong> Sylhet, Moulvibazar<br>
+                            <strong>Area:</strong> 12,635 km²<br>
+                            <strong>Population:</strong> 11+ million<br>
+                            <strong>Specialty:</strong> Tea plantations, natural gas
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card h-100 shadow division-card" data-division="rangpur">
+                    <div class="card-header bg-brown text-white">
+                        <h5 class="mb-0">Rangpur Division</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6>Capital: Rangpur</h6>
+                        <p>Northern agricultural region</p>
+                        <hr>
+                        <small>
+                            <strong>Major Cities:</strong> Rangpur, Dinajpur<br>
+                            <strong>Area:</strong> 16,185 km²<br>
+                            <strong>Population:</strong> 18+ million<br>
+                            <strong>Specialty:</strong> Potato, wheat production
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card h-100 shadow division-card" data-division="mymensingh">
+                    <div class="card-header bg-teal text-white">
+                        <h5 class="mb-0">Mymensingh Division</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6>Capital: Mymensingh</h6>
+                        <p>Newest division</p>
+                        <hr>
+                        <small>
+                            <strong>Major Cities:</strong> Mymensingh, Jamalpur<br>
+                            <strong>Area:</strong> 10,584 km²<br>
+                            <strong>Population:</strong> 12+ million<br>
+                            <strong>Specialty:</strong> Agricultural research, education
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="card shadow">
+                    <div class="card-header bg-dark text-white">
+                        <h4 class="mb-0">Division Map</h4>
+                    </div>
+                    <div class="card-body text-center">
+                        <div id="divisionMap"
+                            style="height: 400px; background: #e9ecef; display: flex; align-items: center; justify-content: center;">
+                            <div class="text-center">
+                                <h5>Interactive Division Map</h5>
+                                <p class="text-muted">(This would be an interactive map in a real application)</p>
+                                <div class="btn-group mt-3" role="group">
+                                    <button type="button" class="btn btn-outline-primary"
+                                        onclick="showMapInfo('dhaka')">Dhaka</button>
+                                    <button type="button" class="btn btn-outline-success"
+                                        onclick="showMapInfo('chittagong')">Chittagong</button>
+                                    <button type="button" class="btn btn-outline-warning"
+                                        onclick="showMapInfo('rajshahi')">Rajshahi</button>
+                                    <button type="button" class="btn btn-outline-danger"
+                                        onclick="showMapInfo('khulna')">Khulna</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Bangladesh Divisions</h5>
+                    <p>Exploring the diversity of our nation.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>Saiyedul Abrar HarvardX CS50x 2025.</p>
+                    <p id="divisionsDate" class="text-warning"></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Division
+        const divisionData = {
+            dhaka: {
+                title: "Dhaka Division",
+                capital: "Dhaka",
+                population: "44+ million",
+                area: "20,593 km²",
+                description: "The capital division and economic center of Bangladesh. Home to the national parliament, major industries, and cultural institutions. Dhaka is one of the world's most densely populated cities and serves as the political, cultural, and economic heart of the nation.",
+                features: ["National Parliament (Jatiya Sangsad)", "Dhaka University", "Ahsan Manzil (Pink Palace)", "Lalbagh Fort", "National Museum", "Bangladesh National Zoo"],
+                color: "primary",
+                tourism: ["Historic Old Dhaka", "Bangladesh National Museum", "Lalbagh Fort", "Ahsan Manzil", "Sadarghat River Port"],
+                economy: ["Garments Industry", "Financial Services", "IT Sector", "Education Hub"],
+                districts: 13
+            },
+            chittagong: {
+                title: "Chittagong Division",
+                capital: "Chittagong",
+                population: "33+ million",
+                area: "33,771 km²",
+                description: "Home to the country's main seaport and largest hill tracts. Major industrial and commercial hub with stunning natural beauty including the world's longest sea beach at Cox's Bazar and the picturesque hill districts of Rangamati, Bandarban, and Khagrachhari.",
+                features: ["Chittagong Port", "Cox's Bazar Beach", "Bandarban Hill Tracts", "Kaptai Lake", "Rangamati", "Foy's Lake"],
+                color: "success",
+                tourism: ["Cox's Bazar Beach", "Bandarban Hill Tracts", "Kaptai Lake", "Rangamati", "Patenga Beach"],
+                economy: ["Shipping & Port", "Tourism", "Steel Industry", "Fishing"],
+                districts: 11
+            },
+            rajshahi: {
+                title: "Rajshahi Division",
+                capital: "Rajshahi",
+                population: "19+ million",
+                area: "18,153 km²",
+                description: "Known as the 'Silk Capital' of Bangladesh and famous for its delicious mangoes. Rich in archaeological sites and historical significance, with the ancient Pundra Kingdom having its capital in this region.",
+                features: ["Silk Industry", "Mango Orchards", "Paharpur Buddhist Monastery", "Kantajew Temple", "Choto Sona Mosque", "Mahasthangarh"],
+                color: "warning",
+                tourism: ["Mahasthangarh Archaeological Site", "Paharpur UNESCO Site", "Kantajew Temple", "Choto Sona Mosque", "Padma River"],
+                economy: ["Silk Production", "Mango Cultivation", "Agriculture", "Archaeological Tourism"],
+                districts: 8
+            },
+            khulna: {
+                title: "Khulna Division",
+                capital: "Khulna",
+                population: "17+ million",
+                area: "22,285 km²",
+                description: "Home to the Sundarbans, the largest mangrove forest in the world and a UNESCO World Heritage Site. Major center for shrimp farming and shipbuilding industries.",
+                features: ["Sundarbans Mangrove Forest", "Sixty Dome Mosque", "Shat Gambuj Mosque", "Rabindra Complex", "Mongla Port"],
+                color: "danger",
+                tourism: ["Sundarbans Mangrove Forest", "Sixty Dome Mosque", "Rabindranath Tagore's House", "Khan Jahan Ali's Tomb", "Mongla Port"],
+                economy: ["Shrimp Farming", "Shipbuilding", "Mangrove Forestry", "Port Operations"],
+                districts: 10
+            },
+            barishal: {
+                title: "Barishal Division",
+                capital: "Barishal",
+                population: "9+ million",
+                area: "13,225 km²",
+                description: "Known as the 'Venice of the East' due to its numerous rivers, canals, and waterways. Major rice-producing region with a unique riverine culture and traditional boat racing.",
+                features: ["Riverine Network", "Rice Production", "Guava Orchards", "Floating Markets", "Traditional Boat Racing"],
+                color: "info",
+                tourism: ["Kuakata Beach", "Durga Sagar", "Oxford Mission Church", "Bibichini Shahi Mosque", "River Cruises"],
+                economy: ["Rice Production", "Fishing", "Guava Cultivation", "River Transport"],
+                districts: 6
+            },
+            sylhet: {
+                title: "Sylhet Division",
+                capital: "Sylhet",
+                population: "11+ million",
+                area: "12,635 km²",
+                description: "Known for its tea gardens, natural gas reserves, and spiritual significance. The region is famous for its Surma River, rolling hills, and as the homeland of many Bangladeshis living abroad.",
+                features: ["Tea Plantations", "Natural Gas Fields", "Ratargul Swamp Forest", "Jaflong", "Shah Jalal Shrine"],
+                color: "purple",
+                tourism: ["Tea Gardens of Srimangal", "Jaflong", "Ratargul Swamp Forest", "Shah Jalal Dargah", "Madhabkunda Waterfall"],
+                economy: ["Tea Production", "Natural Gas", "Remittance Economy", "Tourism"],
+                districts: 4
+            },
+            rangpur: {
+                title: "Rangpur Division",
+                capital: "Rangpur",
+                population: "18+ million",
+                area: "16,185 km²",
+                description: "Northern agricultural region known as the 'Potato Capital' of Bangladesh. Rich in archaeological sites and home to the Kantajew Temple, one of the most ornate Hindu temples in the country.",
+                features: ["Potato Production", "Tajhat Palace", "Kantajew Temple", "Ramsagar National Park", "Dinajpur Rajbari"],
+                color: "brown",
+                tourism: ["Tajhat Palace", "Kantajew Temple", "Ramsagar National Park", "Dinajpur Rajbari", "Nilkuthi"],
+                economy: ["Potato Farming", "Wheat Production", "Jute Cultivation", "Dairy Farming"],
+                districts: 8
+            },
+            mymensingh: {
+                title: "Mymensingh Division",
+                capital: "Mymensingh",
+                population: "12+ million",
+                area: "10,584 km²",
+                description: "The newest division of Bangladesh, created in 2015. Known for its agricultural research, educational institutions, and cultural heritage. Home to Bangladesh Agricultural University and rich folk traditions.",
+                features: ["Bangladesh Agricultural University", "Shashi Lodge", "Mymensingh Museum", "Brahmaputra River", "Folk Culture"],
+                color: "teal",
+                tourism: ["Shashi Lodge", "Mymensingh Museum", "Agricultural University Campus", "Brahmaputra River Bank", "Muktagacha Rajbari"],
+                economy: ["Agricultural Research", "Education", "Fishing", "Handicrafts"],
+                districts: 4
+            }
+        };
+
+        function showDivisionInfo(division) {
+            const detailsDiv = document.getElementById('divisionDetails');
+            const data = divisionData[division];
+
+            detailsDiv.innerHTML = `
+        <div class="card-body">
+            <h4 class="card-title text-${data.color}">${data.title}</h4>
+            <div class="row">
+                <div class="col-md-4">
+                    <p><strong>Capital:</strong> ${data.capital}</p>
+                    <p><strong>Population:</strong> ${data.population}</p>
+                    <p><strong>Area:</strong> ${data.area}</p>
+                    <p><strong>Districts:</strong> ${data.districts}</p>
+                </div>
+                <div class="col-md-4">
+                    <p><strong>Key Features:</strong></p>
+                    <ul class="list-unstyled">
+                        ${data.features.map(feature => `<li>✓ ${feature}</li>`).join('')}
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <p><strong>Tourism Highlights:</strong></p>
+                    <div class="d-flex flex-wrap gap-1">
+                        ${data.tourism.map(place => `<span class="badge bg-${data.color}">${place}</span>`).join('')}
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12">
+                    <h6>Description:</h6>
+                    <p>${data.description}</p>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <h6>Economic Activities:</h6>
+                    <div class="d-flex flex-wrap gap-1">
+                        ${data.economy.map(activity => `<span class="badge bg-secondary">${activity}</span>`).join('')}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-outline-${data.color} mt-2" onclick="showMapInfo('${division}')">
+                        View on Map
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+
+            detailsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function showMapInfo(division) {
+            alert(`Showing information for ${divisionData[division].title}`);
+        }
+
+        document.querySelectorAll('.division-card').forEach(card => {
+            card.addEventListener('click', function () {
+                const division = this.getAttribute('data-division');
+                showDivisionInfo(division);
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+SPECIFICATION DOCUMENT - BEAUTIFUL BANGLADESH WEBSITE
+
+HTML TAGS USED (10 distinct tags besides <html>, <head>, <body>, <title>):
+1. <nav> - Used for the navigation bar on all pages
+2. <section> - Used to divide content into thematic sections
+3. <article> - Used for independent content pieces in history timeline
+4. <aside> - Used for supplementary information in division descriptions
+5. <header> - Used for page headers and hero sections
+6. <footer> - Used for page footers with copyright information
+7. <main> - Used to wrap the main content of each page
+8. <figure> and <figcaption> - Used for images with captions
+9. <table> - Used to display tabular data in history and tourism pages
+10. <form> - Used for feedback form and quizzes
+11. <blockquote> - Used for quotations in history page
+12. <ul>/<ol>/<li> - Used for lists throughout the site
+13. <button> - Used for interactive buttons
+14. <input> - Used in forms for user input
+15. <textarea> - Used for multi-line text input in feedback form
+
+CSS PROPERTIES USED (5+ different properties):
+1. background (with linear-gradient) - Used for hero sections and cards
+2. box-shadow - Used for card shadows and hover effects
+3. transform - Used for animations, hover effects, and scaling
+4. transition - Used for smooth hover effects and state changes
+5. position (relative/absolute/fixed) - Used for navigation bar and timeline
+6. display (flex/grid) - Used for responsive layouts
+7. media queries - Used for responsive design across devices
+8. animation and @keyframes - Used for fade-in effects
+9. border-radius - Used for rounded corners on cards and buttons
+10. z-index - Used for layering elements
+
+BOOTSTRAP USAGE:
+I used Bootstrap 5.3.8 to create a responsive grid system, navigation components, cards, modals, and utility classes throughout the website. Bootstrap's responsive breakpoints and pre-built components helped ensure mobile-first design while maintaining consistency across all pages.
+
+JAVASCRIPT USAGE:
+JavaScript was integrated to add interactivity including: a visitor counter that persists using localStorage, interactive division selectors that dynamically update content, image zoom functionality, form validation with visual feedback, smooth scrolling animations, and date display updates in the footer. Event listeners were added for click, hover, and form submission events to enhance user engagement.
+
+RESPONSIVE DESIGN APPROACH:
+The website uses Bootstrap's responsive grid system with custom CSS media queries to ensure optimal viewing on mobile devices (using mobile-first approach), tablets, and desktops. Images are responsive, navigation collapses into a hamburger menu on mobile, and content reflows appropriately based on screen size.
+
+COLOR THEME:
+The color theme is based on Bangladesh's national colors: green (#006A4E) and red (#F42A41), with gold (#FFC107) as an accent color. These colors are used consistently throughout the site to maintain brand identity while ensuring good contrast and accessibility.
