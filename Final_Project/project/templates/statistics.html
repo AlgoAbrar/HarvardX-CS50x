@@ -1,0 +1,186 @@
+{% extends "layout.html" %}
+
+{% block title %}Statistics{% endblock %}
+
+{% block main %}
+<h1 class="mb-4">Your Habit Statistics</h1>
+
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-number">{{ habits|length }}</div>
+        <div class="stat-label">Total Habits</div>
+    </div>
+
+    {% if best_habit %}
+    <div class="stat-card">
+        <div class="stat-number">{{ best_habit.completion_rate }}%</div>
+        <div class="stat-label">Best: {{ best_habit.name }}</div>
+    </div>
+    {% endif %}
+
+    {% if worst_habit %}
+    <div class="stat-card">
+        <div class="stat-number">{{ worst_habit.completion_rate }}%</div>
+        <div class="stat-label">Needs Work: {{ worst_habit.name }}</div>
+    </div>
+    {% endif %}
+
+    {% set avg_rate = habits|map(attribute='completion_rate')|sum / habits|length if habits|length > 0 else 0 %}
+    <div class="stat-card">
+        <div class="stat-number">{{ avg_rate|round(1) }}%</div>
+        <div class="stat-label">Average Completion Rate</div>
+    </div>
+</div>
+
+<div class="card mt-4">
+    <h2 class="mb-3">Daily Completion (Last 30 Days)</h2>
+    <div class="chart-container">
+        <canvas id="dailyChart"></canvas>
+    </div>
+</div>
+
+<div class="card mt-4">
+    <h2 class="mb-3">Habit Performance Details</h2>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Habit</th>
+                    <th>Frequency</th>
+                    <th>Completion Rate</th>
+                    <th>Current Streak</th>
+                    <th>Total Completed</th>
+                    <th>Last Check</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for habit in habits %}
+                <tr>
+                    <td>
+                        <div class="d-flex align-center gap-2">
+                            <div class="habit-dot" style="background-color: {{ habit.color }};"></div>
+                            {{ habit.name }}
+                        </div>
+                    </td>
+                    <td>{{ habit.frequency }}</td>
+                    <td>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: {{ habit.completion_rate }}%;">
+                                {{ habit.completion_rate }}%
+                            </div>
+                        </div>
+                    </td>
+                    <td>{{ habit.streak }} day{% if habit.streak != 1 %}s{% endif %}</td>
+                    <td>{{ habit.completed_count }}/{{ habit.total_checks }}</td>
+                    <td>{{ habit.last_check or 'Never' }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="6" class="text-center py-4">
+                        No habits to display. <a href="{{ url_for('manage_habits') }}">Add some habits!</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.table th {
+    font-weight: 600;
+    color: #333;
+    background: #f8f9fa;
+}
+
+.habit-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.progress {
+    height: 20px;
+    background: #e9ecef;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const ctx = document.getElementById('dailyChart').getContext('2d');
+    const dailyData = {{ daily_data|tojson }};
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: dailyData.map(d => new Date(d.date).toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric'
+            })),
+            datasets: [{
+                label: 'Completion Rate (%)',
+                data: dailyData.map(d => d.rate),
+                backgroundColor: 'rgba(102, 126, 234, 0.6)',
+                borderColor: 'rgba(102, 126, 234, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: {
+                        callback: function(value) {
+                            return value + '%';
+                        }
+                    }
+                },
+                x: {
+                    ticks: {
+                        maxTicksLimit: 15
+                    }
+                }
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const data = dailyData[context.dataIndex];
+                            return `${data.rate}% (${data.completed}/${data.total} habits)`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+});
+</script>
+{% endblock %}

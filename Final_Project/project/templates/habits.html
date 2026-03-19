@@ -1,0 +1,154 @@
+{% extends "layout.html" %}
+
+{% block title %}Manage Habits{% endblock %}
+
+{% block main %}
+<div class="d-flex justify-between align-center mb-4">
+    <h1>Manage Habits</h1>
+    <a href="{{ url_for('index') }}" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Back to Dashboard
+    </a>
+</div>
+
+<div class="dashboard-grid">
+    <div class="card">
+        <h2 class="mb-3">Add New Habit</h2>
+        <form action="/habits" method="post">
+            <div class="form-group">
+                <label for="name" class="form-label">Habit Name</label>
+                <input type="text" class="form-control" id="name" name="name"
+                       placeholder="e.g., Morning Exercise, Read 20 pages" required>
+            </div>
+
+            <div class="form-group">
+                <label for="color" class="form-label">Color</label>
+                <input type="color" class="form-control" id="color" name="color"
+                       value="#4CAF50" style="height: 50px;">
+            </div>
+
+            <div class="form-group">
+                <label for="frequency" class="form-label">Frequency</label>
+                <select class="form-control" id="frequency" name="frequency">
+                    <option value="daily">Daily</option>
+                    <option value="weekly">Weekly</option>
+                    <option value="weekdays">Weekdays Only</option>
+                    <option value="weekends">Weekends Only</option>
+                </select>
+            </div>
+
+            <input type="hidden" name="action" value="add">
+            <button type="submit" class="btn btn-success">
+                <i class="fas fa-plus"></i> Add Habit
+            </button>
+        </form>
+    </div>
+
+    <div class="card">
+        <h2 class="mb-3">Your Habits</h2>
+        <div class="habit-list">
+            {% for habit in habits %}
+            <div class="habit-item">
+                <div class="habit-color" style="background-color: {{ habit.color }};"></div>
+                <div class="habit-info">
+                    <div class="habit-name">{{ habit.name }}</div>
+                    <div class="habit-meta">
+                        <span class="badge">{{ habit.frequency }}</span>
+                        <span>• {{ habit.created_at[:10] }}</span>
+                    </div>
+                </div>
+                <div class="d-flex gap-1">
+                    <button type="button" class="btn btn-sm btn-secondary"
+                            onclick="editHabit('{{ habit.id }}', '{{ habit.name }}', '{{ habit.color }}', '{{ habit.frequency }}')">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <form action="/habits" method="post" style="display: inline;">
+                        <input type="hidden" name="action" value="delete">
+                        <input type="hidden" name="habit_id" value="{{ habit.id }}">
+                        <button type="submit" class="btn btn-sm btn-danger delete-habit">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            {% else %}
+            <div class="text-center py-4">
+                <p>No habits yet. Add your first habit using the form!</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Edit Modal (hidden by default) -->
+<div id="editModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <h3>Edit Habit</h3>
+        <form action="/habits" method="post">
+            <input type="hidden" name="action" value="edit">
+            <input type="hidden" name="habit_id" id="editHabitId">
+
+            <div class="form-group">
+                <label for="editName" class="form-label">Habit Name</label>
+                <input type="text" class="form-control" id="editName" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="editColor" class="form-label">Color</label>
+                <input type="color" class="form-control" id="editColor" name="color"
+                       style="height: 50px;">
+            </div>
+
+            <div class="form-group">
+                <label for="editFrequency" class="form-label">Frequency</label>
+                <select class="form-control" id="editFrequency" name="frequency">
+                    <option value="daily">Daily</option>
+                    <option value="weekly">Weekly</option>
+                    <option value="weekdays">Weekdays Only</option>
+                    <option value="weekends">Weekends Only</option>
+                </select>
+            </div>
+
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-success">Save Changes</button>
+                <button type="button" class="btn btn-secondary"
+                        onclick="document.getElementById('editModal').style.display='none'">
+                    Cancel
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+}
+</style>
+
+<script>
+function editHabit(id, name, color, frequency) {
+    document.getElementById('editHabitId').value = id;
+    document.getElementById('editName').value = name;
+    document.getElementById('editColor').value = color;
+    document.getElementById('editFrequency').value = frequency;
+    document.getElementById('editModal').style.display = 'flex';
+}
+</script>
+{% endblock %}
